@@ -1,0 +1,20 @@
+{
+    "firebase": {
+        "fcm": {
+            "key": "AAAA2VcT0Us:APA91bFvwtedpzV085Juhb4KDUZVuTE6i72gzYpCoTTJtwpgAdVwK0cCRvPKiY0Qc8rXSCswJgQiU0QRc8OnOuZ59jw_bOD4YKsumJfN9volSm1Iwi3TQBBvUhJYV94ZeRcRgxT9f5S4"
+        },
+        "config": {
+            "apiKey": " AIzaSyBplhO2mKD78xszffSAiXxPnUeaWP4h0qs",
+            "authDomain": "nevills-remberball.firebaseapp.com",
+            "databaseURL": "https://nevills-remberball.firebaseio.com",
+            "storageBucket": "nevills-remberball.appspot.com"
+        }
+    },
+    "routes": {
+        "events": {
+            "layer": "/events",
+            "post": "/post",
+            "delete": "/delete"
+        }
+    }
+}
