@@ -3,8 +3,6 @@ import db from '../helpers/database'
 import config from '../config.json';
 
 const router = express.Router();
-const REST = config.routes.events;
-
 
 /* GET */
 router.get('/', function(req, res) {

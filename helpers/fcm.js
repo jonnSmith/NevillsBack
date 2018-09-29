@@ -17,6 +17,7 @@ fcmService.sendMessage = function(registration_ids, title, body, url) {
             url: url
         }
     };
+    console.log('message', message);
     fcmService.fcm.send(message, function(err, response){
         if (err) {
             return err;

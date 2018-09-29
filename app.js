@@ -39,7 +39,14 @@ app.use(function(err, req, res, next) {
 });
 
 cron.schedule('30 * * * * *', () => {
-    console.log('running a task every minute');
+    const date = new Date();
+    db.readData(config.routes.events.layer).then((snap) => {
+        // console.log('snap', snap);
+        for (let e in snap) {
+            // console.log('evt', snap[e]);
+            if(snap[e].token !== 'browser') fcm.sendMessage([snap[e].token], snap[e].title, snap[e].description, snap[e].id);
+        }
+    });
 });
 
 module.exports = app;

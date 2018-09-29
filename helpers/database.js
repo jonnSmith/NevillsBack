@@ -16,7 +16,7 @@ dbService.readData = function(layer) {
     let rows = db.child(layer);
     return new Promise((res) => {
         rows.once("value", function (snapshot) {
-            res(snapshot);
+            res(snapshot.val());
         });
     });
 };
