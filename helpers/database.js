@@ -3,18 +3,27 @@ import config from '../config.json'
 
 firebase.initializeApp(config.firebase.config);
 let dbService = {};
-dbService.db = firebase.database();
+const db = firebase.database().ref();
+const events = db.child("events");
 
-dbService.writeData = function(layer, id, data) {
-    return this.db.database().ref(layer + '/' + id).set(data);
+
+dbService.writeData = function(data, layer, id) {
+    let item = db.child(layer).child(id);
+    return item.set(data);
 };
 
 dbService.readData = function(layer) {
-    return firebase.database().ref(layer).once('value').then(function(snapshot) { return snapshot.val(); });
+    let rows = db.child(layer);
+    return new Promise((res) => {
+        rows.once("value", function (snapshot) {
+            res(snapshot);
+        });
+    });
 };
 
 dbService.deleteItem = function(layer, id) {
-    return firebase.database().ref(layer + '/' + id).remove();
+    let item = db.child(layer).child(id);
+    return item.remove();
 };
 
 module.exports = dbService;
