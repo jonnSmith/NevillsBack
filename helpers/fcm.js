@@ -20,8 +20,10 @@ fcmService.sendMessage = function(registration_ids, title, body, url) {
     console.log('message', message);
     fcmService.fcm.send(message, function(err, response){
         if (err) {
+            console.log('fcm error', err);
             return err;
         } else {
+            console.log('fcm response', response);
             return response;
         }
     });
