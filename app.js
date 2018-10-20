@@ -40,12 +40,12 @@ app.use(function(err, req, res, next) {
 
 cron.schedule('0 * * * * *', () => {
     const datestamp = new Date().setSeconds(0,0).toString();
-    // console.log('datestamp', datestamp);
+    console.log('datestamp', datestamp);
     db.readDataByDatestamp(config.routes.events.layer, datestamp).then((snap) => {
-        // console.log('result', snap);
+        console.log('result', snap);
         if(snap && snap.length) {
             for (let e in snap) {
-                // console.log('evt', snap[e]);
+                console.log('evt', snap[e]);
                 if (snap.hasOwnProperty(e) && snap[e].token !== 'browser') fcm.sendMessage([snap[e].token], snap[e].title, snap[e].description, snap[e].id);
             }
         }
