@@ -7,8 +7,8 @@ const db = firebase.database().ref();
 const events = db.child("events");
 
 
-dbService.writeData = function(data, layer, id) {
-    let item = db.child(layer).child(id);
+dbService.writeData = function(layer, data) {
+    let item = db.child(layer).child(data.datestamp).child(data.id);
     return item.set(data);
 };
 
@@ -21,8 +21,17 @@ dbService.readData = function(layer) {
     });
 };
 
-dbService.deleteItem = function(layer, id) {
-    let item = db.child(layer).child(id);
+dbService.readDataByDatestamp = function(layer, datestamp) {
+    let rows = db.child(layer).child(datestamp);
+    return new Promise((res) => {
+        rows.once("value", function (snapshot) {
+            res(snapshot.val());
+        });
+    });
+};
+
+dbService.deleteItem = function(layer, data) {
+    let item = db.child(layer).child(data.datestamp).child(data.id);
     return item.remove();
 };
 

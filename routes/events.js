@@ -17,7 +17,7 @@ router.get('/', function(req, res) {
 /* POST */
 router.post('/', function(req, res) {
     let event = req.body;
-    db.writeData(event, config.routes.events.layer, event.id).then((snap) => {
+    db.writeData(config.routes.events.layer, event).then((snap) => {
         res.status(200).json(snap);
     }, (err) => {
         res.status(500).json(err);
@@ -25,9 +25,9 @@ router.post('/', function(req, res) {
 });
 
 /* DELETE */
-router.delete('/:id', function(req, res) {
-    const id = req.params.id;
-    db.deleteItem(config.routes.events.layer, id).then((snap) => {
+router.post('/delete', function(req, res) {
+    let event = req.body;
+    db.deleteItem(config.routes.events.layer, event).then((snap) => {
         res.status(200).json(snap);
     }, (err) => {
         res.status(500).json(err);

@@ -38,13 +38,16 @@ app.use(function(err, req, res, next) {
   next();
 });
 
-cron.schedule('30 * * * * *', () => {
-    const date = new Date();
-    db.readData(config.routes.events.layer).then((snap) => {
-        // console.log('snap', snap);
-        for (let e in snap) {
-            // console.log('evt', snap[e]);
-            if(snap[e].token !== 'browser') fcm.sendMessage([snap[e].token], snap[e].title, snap[e].description, snap[e].id);
+cron.schedule('0 * * * * *', () => {
+    const datestamp = new Date().setSeconds(0,0).toString();
+    console.log('datestamp', datestamp);
+    db.readDataByDatestamp(config.routes.events.layer, datestamp).then((snap) => {
+        // console.log('result', snap);
+        if(snap && snap.length) {
+            for (let e in snap) {
+                // console.log('evt', snap[e]);
+                if (snap.hasOwnProperty(e) && snap[e].token !== 'browser') fcm.sendMessage([snap[e].token], snap[e].title, snap[e].description, snap[e].id);
+            }
         }
     });
 });
