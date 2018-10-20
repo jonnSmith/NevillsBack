@@ -38,7 +38,7 @@ app.use(function(err, req, res, next) {
   next();
 });
 
-cron.schedule('0 * * * * *', () => {
+cron.schedule('30 * * * * *', () => {
     const datestamp = new Date().setSeconds(0,0).toString();
     // console.log('datestamp', datestamp);
     db.readDataByDatestamp(config.routes.events.layer, datestamp).then((snap) => {
