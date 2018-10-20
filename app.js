@@ -46,7 +46,10 @@ cron.schedule('0 * * * * *', () => {
         if(snap && snap.length) {
             for (let e in snap) {
                 console.log('evt', snap[e]);
-                if (snap.hasOwnProperty(e) && snap[e].token !== 'browser') fcm.sendMessage([snap[e].token], snap[e].title, snap[e].description, snap[e].id);
+                if (snap.hasOwnProperty(e) && snap[e].token !== 'browser') {
+                    console.log('message', {t: [snap[e].token], e: snap[e].title,d:  snap[e].description, id: snap[e].id});
+                    fcm.sendMessage([snap[e].token], snap[e].title, snap[e].description, snap[e].id);
+                }
             }
         }
     });
