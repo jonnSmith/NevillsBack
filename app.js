@@ -48,7 +48,7 @@ cron.schedule('30 * * * * *', () => {
                 // console.log('evt', snap[e]);
                 let event = snap[e];
                 if (event.token !== 'browser') {
-                    fcm.sendMessage([event.token], event.title, event.description, event.id);
+                    fcm.sendMessage(event.token, event.title, event.description, event.id);
                 }
             }
         }

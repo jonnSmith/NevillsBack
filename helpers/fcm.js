@@ -4,18 +4,22 @@ import config from '../config.json';
 let fcmService = {};
 fcmService.fcm = {};
 
-fcmService.sendMessage = function(registration_ids, title, body, url) {
+fcmService.sendMessage = function(token, title, body, url) {
     fcmService.fcm = new FCM(config.firebase.fcm.key);
     let message = {
-        registration_ids: registration_ids,
-        collapse_key: 'Updates Available',
+        token: token,
         notification: {
             title: title,
-            body: body
+            body: body,
+            sound: "default"
         },
         data: {
             url: url
+        },
+        android:{
+            ttl:"86400s"
         }
+
     };
     console.log('message', message);
     fcmService.fcm.send(message, function(err, response){
