@@ -15,9 +15,6 @@ fcmService.sendMessage = function(token, title, body, url) {
         },
         data: {
             url: url
-        },
-        android:{
-            ttl:"86400s"
         }
 
     };
