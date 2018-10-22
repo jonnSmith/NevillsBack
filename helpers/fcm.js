@@ -7,7 +7,6 @@ fcmService.fcm = {};
 fcmService.sendMessage = function(token, title, body, url) {
     fcmService.fcm = new FCM(config.firebase.fcm.key);
     let message = {
-        token: token,
         notification: {
             title: title,
             body: body,
@@ -15,8 +14,14 @@ fcmService.sendMessage = function(token, title, body, url) {
         },
         data: {
             url: url
-        }
-
+        },
+        android: {
+            ttl: 3600 * 1000,
+            priority: 'high',
+            title: title,
+            body: body,
+        },
+        token: token
     };
     console.log('message', message);
     fcmService.fcm.send(message, function(err, response){
