@@ -14,6 +14,8 @@ fcmService.sendMessage = function(token, title, body, url) {
             sound: "default"
         },
         data: {
+            title: title,
+            body: body,
             url: url
         },
         android: {
