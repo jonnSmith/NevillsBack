@@ -15,8 +15,11 @@ fcmService.sendMessage = function(token, title, body, url) {
             body: body,
             url: url
         },
-        priority: "high",
-        "content_available": true
+        android: {
+            ttl: 3600 * 1000,
+            priority: 'high',
+            click_action: 'FCM_PLUGIN_ACTIVITY'
+        }
     };
     console.log('message', message);
     fcmService.fcm.send(message, function(err, response){
