@@ -8,25 +8,12 @@ fcmService.sendMessage = function(token, title, body, url) {
     fcmService.fcm = new FCM(config.firebase.fcm.key);
     let message = {
         to: token,
-        // notification: {
-        //     title: title,
-        //     body: body
-        // },
-        // data: {
-        //     title: title,
-        //     body: body,
-        //     url: url
-        // },
-        // android: {
-        //     ttl: 3600 * 1000,
-        //     priority: 'high'
-        // },
         priority: "high",
         restricted_package_name: "",
         data: {
             url: url,
-            body: "You've successfully attended the 'dfgdsfg' event and soon you will receive the point.",
-            title: "Event attend confirmation",
+            body: body,
+            title: title,
             badge: 1,
             sound: "default"
         }
