@@ -9,6 +9,8 @@ fcmService.sendMessage = function(token, title, body, url) {
     let message = {
         to: token,
         notification: {
+            title: title,
+            body: body
         },
         data: {
             title: title,
@@ -16,9 +18,8 @@ fcmService.sendMessage = function(token, title, body, url) {
             url: url
         },
         android: {
-            ttl: 0,
-            priority: 'high',
-            click_action: 'FCM_PLUGIN_ACTIVITY'
+            ttl: 3600 * 1000,
+            priority: 'high'
         }
     };
     console.log('message', message);
