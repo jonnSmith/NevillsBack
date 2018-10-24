@@ -28,8 +28,7 @@ fcmService.sendMessage = function(token, title, body, url) {
             body: "You've successfully attended the 'dfgdsfg' event and soon you will receive the point.",
             title: "Event attend confirmation",
             badge: 1,
-            sound: "default",
-            "content-available": "1"
+            sound: "default"
         }
     };
     console.log('message', message);
