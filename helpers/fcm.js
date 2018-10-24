@@ -9,19 +9,14 @@ fcmService.sendMessage = function(token, title, body, url) {
     let message = {
         to: token,
         notification: {
-            title: title,
-            body: body,
-            sound: "default"
         },
         data: {
             title: title,
             body: body,
             url: url
         },
-        android: {
-            priority: 'high',
-            forceShow: true
-        }
+        priority: "high",
+        "content_available": true
     };
     console.log('message', message);
     fcmService.fcm.send(message, function(err, response){
