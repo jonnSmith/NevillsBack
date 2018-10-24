@@ -16,7 +16,7 @@ fcmService.sendMessage = function(token, title, body, url) {
             url: url
         },
         android: {
-            ttl: 3600 * 1000,
+            ttl: 0,
             priority: 'high',
             click_action: 'FCM_PLUGIN_ACTIVITY'
         }
