@@ -15,7 +15,7 @@ fcmService.sendMessage = function(token, title, body, url) {
             body: body,
             title: title,
             badge: 1,
-            sound: "default"
+            sound: "ring"
         }
     };
     console.log('message', message);
