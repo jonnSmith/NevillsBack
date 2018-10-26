@@ -1,3 +1,5 @@
+require('newrelic');
+
 import express from 'express';
 import path from 'path';
 import config from './config.json';
