@@ -14,6 +14,11 @@ router.get('/', function(req, res) {
 
 });
 
+/* PING */
+router.get('/ping', function(req, res) {
+    res.status(200).json({ping: "success"});
+});
+
 /* POST */
 router.post('/', function(req, res) {
     let event = req.body;
