@@ -4,7 +4,7 @@ import config from '../config.json';
 let fcmService = {};
 fcmService.fcm = {};
 
-fcmService.sendMessage = function(token, title, body, url) {
+fcmService.sendMessage = function(token, title, body, url, image) {
     fcmService.fcm = new FCM(config.firebase.fcm.key);
     let message = {
         to: token,
@@ -14,6 +14,7 @@ fcmService.sendMessage = function(token, title, body, url) {
             url: url,
             body: body,
             title: title,
+            image: image,
             badge: 1,
             sound: "ring.mp3",
             soundName: "ring.mp3"
