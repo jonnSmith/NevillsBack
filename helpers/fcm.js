@@ -14,7 +14,7 @@ fcmService.sendMessage = function(token, title, body, url, image) {
             url: url,
             body: body,
             title: title,
-            image: image,
+            image: 'https://raw.githubusercontent.com/jonnSmith/Nevills/master/resources/android/icon/drawable-hdpi-icon.png',
             badge: 1,
             sound: "ring.mp3",
             soundName: "ring.mp3"
