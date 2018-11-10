@@ -14,7 +14,7 @@ fcmService.sendMessage = function(token, title, body, url, image) {
             url: url,
             body: body,
             title: title,
-            image: 'https://www.developpez.com/images/logos/angular.png',
+            image: image,
             badge: 1,
             sound: "ring.mp3",
             soundName: "ring.mp3"
