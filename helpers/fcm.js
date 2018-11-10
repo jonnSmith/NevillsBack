@@ -4,6 +4,18 @@ import config from '../config.json';
 let fcmService = {};
 fcmService.fcm = {};
 
+/**
+ * FCM helper module to send FCM pushes from NodeJS application
+ */
+
+/**
+ * Send message function
+ * @param token FCM specific device token
+ * @param title Push message title
+ * @param body Push message body
+ * @param url Push message url data for client app callback
+ * @param image Image url for display in push message
+ */
 fcmService.sendMessage = function(token, title, body, url, image) {
     fcmService.fcm = new FCM(config.firebase.fcm.key);
     let message = {
@@ -14,7 +26,7 @@ fcmService.sendMessage = function(token, title, body, url, image) {
             url: url,
             body: body,
             title: title,
-            image: 'https://raw.githubusercontent.com/jonnSmith/Nevills/master/resources/android/icon/drawable-hdpi-icon.png',
+            image: image,
             badge: 1,
             sound: "ring.mp3",
             soundName: "ring.mp3"

@@ -21,6 +21,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Setup events REST API layer
 app.use('/'+config.routes.events.layer, eventsLayer);
 
 // catch 404 and forward to error handler
@@ -33,24 +34,27 @@ app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-
   // render the error page
   res.status(err.status || 500);
   res.render('error');
   next();
 });
 
+// Temporary image for push message until realize photo miniature web storing
+const image = 'https://raw.githubusercontent.com/jonnSmith/Nevills/master/resources/android/icon/drawable-hdpi-icon.png';
+
+// Cron task for send pushes from current minute datestamp Firebase DB folder to FCM
 cron.schedule('30 * * * * *', () => {
+    // Current minute datestamp
     const datestamp = new Date().setSeconds(0,0).toString();
-    // console.log('datestamp', datestamp);
-    db.readDataByDatestamp(config.routes.events.layer, datestamp).then((snap) => {
-        // console.log('result', snap);
+    // Query folder from FDB
+    db.getItemsFromFolder(config.routes.events.layer, datestamp).then((snap) => {
         if(snap) {
+            // Send all events to FCM
             for (let e in snap) {
-                // console.log('evt', snap[e]);
                 let event = snap[e];
                 if (event.token !== 'browser') {
-                    fcm.sendMessage(event.token, event.title, event.description, event.id, event.photo);
+                    fcm.sendMessage(event.token, event.title, event.description, event.id, image);
                 }
             }
         }
