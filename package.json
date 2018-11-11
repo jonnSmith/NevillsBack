@@ -1,11 +1,13 @@
 {
     "name": "NevillsBack",
+    "author": "Vardinika",
     "version": "0.0.1",
     "private": true,
     "scripts": {
         "start": "./node_modules/.bin/babel-node --presets es2015 ./bin/www",
         "test": "jest",
-        "coverage": "jest --collectCoverageFrom=/**.js --coverage"
+        "coverage": "jest --collectCoverageFrom=/**.js --coverage",
+        "jsdoc": "./node_modules/.bin/jsdoc -c jsdoc.conf"
     },
     "dependencies": {
         "babel-core": "^6.26.0",
@@ -33,7 +35,9 @@
         "babel-preset-env": "^1.7.0",
         "jest": "^23.6.0",
         "supertest": "^3.3.0",
-        "superagent": "^4.0.0-beta.5"
+        "superagent": "^4.0.0-beta.5",
+        "jsdoc": "^3.5.5",
+        "jsdoc-route-plugin": "^0.1.0"
     },
     "engines": {
         "node": "6.4.0"
