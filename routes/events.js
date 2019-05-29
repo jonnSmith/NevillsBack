@@ -5,7 +5,7 @@ import config from '../config.json';
 const router = express.Router();
 
 /**
- * Ping route for NewRelic to keep Heroku alive
+ * Ping route to keep Heroku alive
  */
 router.get('/ping', function(req, res) {
     res.status(200).json({ping: "success"});
